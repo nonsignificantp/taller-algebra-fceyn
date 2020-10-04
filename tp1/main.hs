@@ -33,12 +33,14 @@ mld p i0 b n
 
 -- Funciones auxiliares para el ejercicio
 
+-- Calcula el (S,I,R) actual a partir del (Sp,Ip,Rp) previo
 status :: (Float, Float, Float) -> Float -> Float -> [(Float, Float, Float)]
 status (sp, ip, rp) b g = [(sp - sick, ip + sick - fine, rp + fine), (sp, ip, rp)]
     where
         sick = b * ip * sp
         fine = g * ip
 
+-- Crea una lista de elementos (S,I,R) desde el momento 0 hasta n
 sir' :: (Float, Float, Float) -> Float -> Float -> Int -> [(Float, Float, Float)]
 sir' (s0, i0, r0) b g n
     | n == 0    = [(s0, i0, r0)]
